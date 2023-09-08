@@ -1,0 +1,34 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Historique</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-button (click)="clearHistory()">Clear Historique</ion-button>
+  <div *ngFor="let data of historyData$ | async">
+    <ion-card>
+      <ion-card-content>
+        <table>
+          <tr>
+            <th>Date: </th>
+            <td>{{ data.date }}</td>
+          </tr>
+          <tr>
+            <th>Temps: </th>
+            <td>{{ data.heureActuelle }}</td>
+          </tr>
+          <tr>
+            <th>Nom de l'equipementl: </th>
+            <td>{{ data.nom }}</td>
+          </tr>
+          <tr>
+            <th>Description de l'equipement: </th>
+            <td>{{ data.description }}</td>
+          </tr>
+        </table>
+      </ion-card-content>
+    </ion-card>
+  </div>
+  
+</ion-content>

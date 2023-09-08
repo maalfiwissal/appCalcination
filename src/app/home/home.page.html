@@ -1,20 +1,67 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Blank
+      Dashboard
     </ion-title>
+
+    <ion-buttons slot="start">
+      <ion-menu-button menu="main-menu"></ion-menu-button>
+    </ion-buttons>
+
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content scrollY="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
+      <ion-title size="large">Dashboard</ion-title>
+
     </ion-toolbar>
   </ion-header>
+  <ion-item>
+    <ion-label>Date</ion-label>
+    <ion-input type="date" [(ngModel)]="selectedDate"></ion-input>
+  </ion-item>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+  <ion-item>
+    <ion-label>Equipement</ion-label>
+    <ion-select [(ngModel)]="selectedEquipement">
+      <ion-select-option value="calcinateur">Calcinateur</ion-select-option>
+      <ion-select-option value="prerefroidisseur R338">Prerefroidisseur R338</ion-select-option>
+      <ion-select-option value="post refroidisseur R339-1">Post refroidisseur R339-1</ion-select-option>
+      <ion-select-option value="post refroidisseur R339-2">Post refroidisseur R339-2</ion-select-option>
+      <ion-select-option value="prechauffeur R336">prechauffeur R336</ion-select-option>
+      <!-- Ajoutez d'autres options d'animaux ici -->
+    </ion-select>
+  </ion-item>
+
+  
+
+  
+    <ion-button expand="full" (click)="afficherInfosEquipement()">OK</ion-button>
+  
+    <!-- Affichage des informations de l'animal sélectionné sous forme de tableau -->
+    <ion-card *ngIf="equipementInfo">
+      <ion-card-content>
+        <table>
+
+          <tr>
+            <th>Date</th>
+            <th>Temps</th>
+            <th>Nom de l'equipement</th>
+            <th>Description de l'equipement</th>
+          </tr>
+          <tr>
+            <td>{{ selectedDate }}</td>
+            <td>{{ getHeureActuelle() }}</td>
+            <td>{{ equipementInfo.nom }}</td>
+            <td>{{ equipementInfo.description }}</td>
+          </tr>
+         
+        </table>
+      </ion-card-content>
+    </ion-card>
+    <ion-button expand="full" (click)="enregistrerInfos()">Enregistrer</ion-button>
+    <ion-button  (click)="navigateToHistorique()" >aller a l'historique</ion-button>
+  
 </ion-content>
